@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
+:root {
+    --color: #962d91
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+
+    /* box-sizing prop does not inherit by default.  Setting its value to "inherit" in the universal selector
+       will make it inherit.  We can then specify a value of "border-box" in the rule for the body selector.
+       Then all elements will have box-sizing of border-box by way of inheritance, rather than the universal
+       selector, which is considered better practice (cite?).
+    */
+    box-sizing: inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+body {
+    margin: 2rem auto;
+    width: 1160px;
 }
 
-.App-link {
-  color: #61dafb;
+@media (max-width: 1200px) {
+    body {
+        width: 860px;
+    }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@media (max-width: 900px) {
+    body {
+        width: 580px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        width: 400px;
+    }
+}
+
+input {
+    border: 1px solid var(--color);
+    float: right;
+}
+
+input::after {
+    clear: both;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    margin-bottom: 3rem;
+    border-left: 2px solid #222;
+    padding-left: .75rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link,
+a:visited {
+    color: #0000ff;
+}
+
+p {
+    margin-bottom: .2rem;
+}
+
+p.title {
+    font-size: 120%;
+}
+
+p.date {
+    color: var(--color);
 }

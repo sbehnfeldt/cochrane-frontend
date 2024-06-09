@@ -1,4 +1,5 @@
 import React from "react";
+import SearchControl from "./components/SearchControl";
 import ReviewList from "./components/ReviewList";
 import './App.css';
 
@@ -6,12 +7,8 @@ import './App.css';
 function App() {
     return (
         <div className="App">
-            <div className="clearfix">
-                <input type="search" name="search"/>
-            </div>
-
+            <SearchControl />
             <ReviewList/>
-
         </div>
     );
 }

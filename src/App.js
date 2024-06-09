@@ -1,6 +1,7 @@
-import './App.css';
 import React from "react";
-import ReviewList from './ReviewList';
+import ReviewList from "./components/ReviewList";
+import './App.css';
+
 
 function App() {
     return (

@@ -5,7 +5,7 @@ const ReviewList = () => {
     return (
         <ul>
             {data.flat().map((review, index) => (
-                <ReviewItem index={index} review={review} />
+                <ReviewItem key={index} index={index} review={review} />
             ))}
         </ul>
     );

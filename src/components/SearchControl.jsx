@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import {FaSearch} from "react-icons/fa";
 import data from '../cochrane_reviews.json';
 
 const SearchControl = () => {
@@ -60,16 +61,17 @@ const SearchControl = () => {
 
 
     return (
-        <section className="searchTopics clearfix">
+        <section className="search clearfix">
 
-            <div className="searchTopics">
-                Search:
+            <div>
                 <input
                     type="text"
                     value={selectedTopic}
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
                 />
+                <FaSearch className="search-icon"/>
+
                 {showTopics && selectedTopic && (
                     <ul>
                         {filteredTopics.map((suggestion, index) => (

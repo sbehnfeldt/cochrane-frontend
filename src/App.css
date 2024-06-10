@@ -33,22 +33,22 @@ ul {
 }
 
 section.searchTopics {
-    border: 1px solid gray;
     height: 4rem;
-    background-color: #ccc;
+    background-color: #fff;
     position: fixed;
     width: 1160px;
 }
 
 section.searchTopics div.searchTopics {
-    width: 25%;
+    width: 35%;
     float: right;
 }
 
 section.searchTopics input {
-    width: 80%;
+    width: 85%;
     border: 1px solid var(--color);
     float: right;
+    line-height: 2rem;
 }
 
 section.searchTopics input::after {
@@ -99,19 +99,43 @@ p.date {
 }
 
 @media (max-width: 1200px) {
-    body {
+    body, section.searchTopics {
         width: 860px;
+    }
+
+    section.searchTopics div.searchTopics {
+        width: 45%;
+    }
+
+    section.searchTopics input {
+        width: 85%;
     }
 }
 
 @media (max-width: 900px) {
-    body {
+    body, section.searchTopics {
         width: 580px;
+    }
+
+    section.searchTopics div.searchTopics {
+        width: 55%;
+    }
+
+    section.searchTopics input {
+        width: 80%;
     }
 }
 
 @media (max-width: 600px) {
-    body {
+    body, section.searchTopics {
         width: 400px;
+    }
+
+    section.searchTopics div.searchTopics {
+        width: 65%;
+    }
+
+    section.searchTopics input {
+        width: 75%;
     }
 }

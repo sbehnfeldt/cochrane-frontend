@@ -45,32 +45,34 @@ body {
     }
 }
 
-input {
-    border: 1px solid var(--color);
-    float: right;
-}
-
-input::after {
-    clear: both;
-}
 
 ul {
     list-style: none;
     margin-top: 5rem;
 }
 
-li {
+
+div.searchTopics input {
+    border: 1px solid var(--color);
+    float: right;
+}
+
+div.searchTopics input::after {
+    clear: both;
+}
+
+ul.reviews li {
     margin-bottom: 3rem;
     border-left: 2px solid #222;
     padding-left: .75rem;
 }
 
-a {
+ul.reviews li a {
     text-decoration: none;
 }
 
-a:link,
-a:visited {
+ul.reviews li a:link,
+ul.reviews li a:visited {
     color: #0000ff;
 }
 
@@ -81,6 +83,7 @@ p {
 p.title {
     font-size: 120%;
 }
+
 p.author {
     margin-bottom: 1rem;
 }

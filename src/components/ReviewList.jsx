@@ -42,7 +42,7 @@ const ReviewList = () => {
 
 
     return (
-        <ul>
+        <ul className="reviews">
             {reviews.map((review, index) => (
                 <ReviewItem key={index} index={index} review={review}/>
             ))}

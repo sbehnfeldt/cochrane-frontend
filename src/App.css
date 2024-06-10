@@ -23,42 +23,48 @@
 }
 
 body {
-    margin: 2rem auto;
+    margin: 0 auto;
     width: 1160px;
-}
-
-@media (max-width: 1200px) {
-    body {
-        width: 860px;
-    }
-}
-
-@media (max-width: 900px) {
-    body {
-        width: 580px;
-    }
-}
-
-@media (max-width: 600px) {
-    body {
-        width: 400px;
-    }
 }
 
 
 ul {
     list-style: none;
-    margin-top: 5rem;
 }
 
+section.searchTopics {
+    border: 1px solid gray;
+    height: 4rem;
+    background-color: #ccc;
+    position: fixed;
+    width: 1160px;
+}
 
-div.searchTopics input {
+section.searchTopics div.searchTopics {
+    width: 25%;
+    float: right;
+}
+
+section.searchTopics input {
+    width: 80%;
     border: 1px solid var(--color);
     float: right;
 }
 
-div.searchTopics input::after {
+section.searchTopics input::after {
     clear: both;
+}
+
+section.searchTopics ul {
+    background-color: peachpuff;
+}
+
+section.searchTopics ul li:hover {
+    background-color: mintcream;
+}
+
+ul.reviews {
+    padding-top: 6rem;
 }
 
 ul.reviews li {
@@ -90,4 +96,22 @@ p.author {
 
 p.date {
     color: var(--color);
+}
+
+@media (max-width: 1200px) {
+    body {
+        width: 860px;
+    }
+}
+
+@media (max-width: 900px) {
+    body {
+        width: 580px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        width: 400px;
+    }
 }

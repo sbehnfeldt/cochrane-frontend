@@ -2,10 +2,10 @@ import {useState, useEffect} from 'react';
 import data from '../cochrane_reviews.json';
 
 const SearchControl = () => {
-    const [allTopics, setAllTopics] = useState([]);
-    const [selectedTopic, setSelectedTopic] = useState('');
-    const [filteredTopics, setFilteredTopics] = useState([]);
-    const [showTopics, setShowTopics] = useState(false);
+    const [allTopics, setAllTopics]               = useState([]);
+    const [selectedTopic, setSelectedTopic]       = useState('');
+    const [filteredTopics, setFilteredTopics]     = useState([]);
+    const [showTopics, setShowTopics]             = useState(false);
     const [activeTopicIndex, setActiveTopicIndex] = useState(0);
 
 
@@ -60,30 +60,30 @@ const SearchControl = () => {
 
 
     return (
-        <div className="searchTopics clearfix">
-            <input
-                type="text"
-                value={selectedTopic}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-            />
-            {showTopics && selectedTopic && (
-                <ul>
-                    {filteredTopics.map((suggestion, index) => (
-                        <li
-                            key={index}
-                            onClick={() => handleClick(suggestion)}
-                            style={{
-                                backgroundColor:
-                                    index === activeTopicIndex ? '#d3d3d3' : 'transparent',
-                            }}
-                        >
-                            {suggestion}
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
+        <section className="searchTopics clearfix">
+
+            <div className="searchTopics">
+                Search:
+                <input
+                    type="text"
+                    value={selectedTopic}
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                />
+                {showTopics && selectedTopic && (
+                    <ul>
+                        {filteredTopics.map((suggestion, index) => (
+                            <li
+                                key={index}
+                                onClick={() => handleClick(suggestion)}
+                            >
+                                {suggestion}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+        </section>
     );
 };
 export default SearchControl;

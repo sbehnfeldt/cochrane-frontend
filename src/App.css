@@ -129,18 +129,13 @@ div.selected-topic {
 }
 
 .chip .close-icon {
-    border-radius: 10rem;
     margin: 0;
-    padding: 3px;
+    padding: 0 3px;
     background-color: var(--highlight);
     color: #fff;
     font-weight: bold;
 }
 
-.chip .close-icon:hover {
-    color: var(--highlight);
-    background-color: #fff;
-}
 
 /* The actual reviews themselves */
 ul.reviews {
@@ -175,40 +170,46 @@ p.date {
 }
 
 @media (max-width: 1200px) {
+    body {
+        font-size: 1.5rem;
+    }
+
     body, section.search {
         width: 860px;
     }
 
-    section.search div {
+    section.search div.searchControl input,
+    section.search div.searchControl ul {
         width: 45%;
     }
 }
 
 @media (max-width: 900px) {
+    body {
+        font-size: 1.4rem;
+    }
+
     body, section.search {
         width: 580px;
     }
 
-    section.search div.searchTopics {
+    section.search div.searchControl input,
+    section.search div.searchControl ul {
         width: 55%;
     }
-
 }
 
 @media (max-width: 600px) {
+    body {
+        font-size: 1.2rem;
+    }
+
     body, section.search {
         width: 400px;
     }
 
-    section.search div.searchTopics {
-        width: 95%;
-    }
-
-    section.search input {
-        width: 95%;
-    }
-
-    section.search ul li {
-        font-size: 85%;
+    section.search div.searchControl input,
+    section.search div.searchControl ul {
+        width: 65%;
     }
 }

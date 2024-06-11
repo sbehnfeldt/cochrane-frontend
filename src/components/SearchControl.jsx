@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import {FaSearch, FaWindowClose} from "react-icons/fa";
 import data from '../cochrane_reviews.json';
 
-const SearchControl = () => {
+const SearchControl = ({parentCallback}) => {
     const [allTopics, setAllTopics]                         = useState([]);     // All topics (as found in input JSON file)
     const [filteredTopics, setFilteredTopics]               = useState([]);     // Subset of all topics (those matching search input)
     const [highlightedTopic, setHighlightedTopic]           = useState('');     //
@@ -11,34 +11,7 @@ const SearchControl = () => {
     const [highlightedTopicIndex, setHighlightedTopicIndex] = useState(0);      //
 
 
-    // User has pressed a key while search box has focus
-    const handleKeyDown = (e) => {
-        if (e.key === 'ArrowDown') {
-            if (highlightedTopicIndex < filteredTopics.length - 1) {
-                setHighlightedTopicIndex(highlightedTopicIndex + 1);
-            }
-        } else if (e.key === 'ArrowUp') {
-            if (highlightedTopicIndex > 0) {
-                setHighlightedTopicIndex(highlightedTopicIndex - 1);
-            }
-        } else if (e.key === 'Enter') {
-            setSelectedTopic(filteredTopics[highlightedTopicIndex]);
-            setHighlightedTopic(filteredTopics[highlightedTopicIndex]);
-
-            setFilteredTopics([]);
-            setShowTopics(false);
-        } else if (e.key === 'Escape') {
-            setShowTopics(false);
-        }
-    };
-
-    // User has moused over an entry in the suggestion list
-    const handleMouseOver = (idx) => {
-        setHighlightedTopicIndex(idx);
-    };
-
-
-    // The value typed into the input box has changed
+    // User is typing in the Search box
     const handleChange = (e) => {
         const userInput = e.target.value;
         setHighlightedTopic(userInput);
@@ -58,10 +31,41 @@ const SearchControl = () => {
     };
 
 
+    // User has pressed a key while search box has focus
+    const handleKeyDown = (e) => {
+        if (e.key === 'ArrowDown') {
+            if (highlightedTopicIndex < filteredTopics.length - 1) {
+                setHighlightedTopicIndex(highlightedTopicIndex + 1);
+            }
+        } else if (e.key === 'ArrowUp') {
+            if (highlightedTopicIndex > 0) {
+                setHighlightedTopicIndex(highlightedTopicIndex - 1);
+            }
+        } else if (e.key === 'Enter') {
+            setSelectedTopic(filteredTopics[highlightedTopicIndex]);
+            setHighlightedTopic(filteredTopics[highlightedTopicIndex]);
+            parentCallback(filteredTopics[highlightedTopicIndex]);
+
+            setFilteredTopics([]);
+            setShowTopics(false);
+        } else if (e.key === 'Escape') {
+            setShowTopics(false);
+        }
+    };
+
+
+    // User is mousing over the filtered topics drop-down list
+    const handleMouseOver = (idx) => {
+        setHighlightedTopicIndex(idx);
+    };
+
+
     // User clicks on a topic in the suggestion list
     const handleClick = (topic) => {
         setSelectedTopic(topic);
         setHighlightedTopic(topic);
+        parentCallback(topic);
+
         setFilteredTopics([]);
         setShowTopics(false);
     };

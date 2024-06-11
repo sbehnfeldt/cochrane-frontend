@@ -5,9 +5,14 @@ import './App.css';
 
 
 function App() {
+    const handleCallback = (childData) => {
+        console.log("Callback");
+        console.log(childData);
+    };
+
     return (
         <div className="App">
-            <SearchControl />
+            <SearchControl parentCallback={handleCallback}/>
             <ReviewList/>
         </div>
     );

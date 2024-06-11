@@ -43,6 +43,25 @@ section.search {
     width: 1160px;
 }
 
+section.search span.selectedTopic {
+    background-color: var(--color);
+    border-radius: 100rem;
+    color: #eee;
+    padding: 0 1rem;
+}
+
+.chip {
+    color: white;
+    border: none;
+    background-color: var(--color);
+    border-radius: 100rem;
+    padding: .25rem .5rem;
+}
+
+.chip:hover {
+    cursor: pointer;
+}
+
 section.search div {
     float: right;
     width: 35%;
@@ -51,7 +70,10 @@ section.search div {
 section.search input {
     width: 100%;
     border: 1px solid var(--color);
+    color: var(--color);
+    font-weight: bold;
     float: right;
+    padding: 0 .5rem;
     line-height: 2rem;
 }
 
@@ -69,11 +91,14 @@ section.search .search-icon {
 }
 
 section.search ul {
-    background-color: peachpuff;
+    background-color: #09265d;
+    padding: .5rem;
+    color: white;
 }
 
 section.search ul li:hover {
     background-color: mintcream;
+    color: #09265d;
 }
 
 ul.reviews {

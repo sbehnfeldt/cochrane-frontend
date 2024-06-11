@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {FaSearch} from "react-icons/fa";
+import {FaSearch, FaWindowClose} from "react-icons/fa";
 import data from '../cochrane_reviews.json';
 
 const SearchControl = () => {
@@ -63,6 +63,7 @@ const SearchControl = () => {
     return (
         <section className="search clearfix">
 
+            Topic: <button className="chip">{selectedTopic} <FaWindowClose/></button>
             <div>
                 <input
                     type="text"

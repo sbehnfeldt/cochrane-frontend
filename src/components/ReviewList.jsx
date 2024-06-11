@@ -15,7 +15,7 @@ const ReviewList = () => {
     const fetchReviews = () => {
         setIsLoading(true);
         setReviews(data.slice(0, display));
-        setDisplay(display + 1);
+        setDisplay(display + 3);
         setIsLoading(false);
     }
 

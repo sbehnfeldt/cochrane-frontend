@@ -3,7 +3,7 @@ import ReviewItem from "./ReviewItem";
 import data from '../cochrane_reviews.json';
 
 
-const ReviewList = () => {
+const ReviewList = ({selectedTopic}) => {
     const [reviews, setReviews]     = useState([]);
     const [display, setDisplay]     = useState(10);
     const [isLoading, setIsLoading] = useState(false);
@@ -44,7 +44,8 @@ const ReviewList = () => {
     return (
         <ul className="reviews">
             {reviews.map((review, index) => (
-                <ReviewItem key={index} index={index} review={review}/>
+                !selectedTopic || (selectedTopic === review.topic) ?
+                    (<ReviewItem key={index} index={index} review={review}/>) : null
             ))}
         </ul>
     );

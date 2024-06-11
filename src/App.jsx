@@ -1,19 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import SearchControl from "./components/SearchControl";
 import ReviewList from "./components/ReviewList";
 import './App.css';
 
 
 function App() {
+    const [selectedTopic, setSelectedTopic] = useState('');
+
     const handleCallback = (childData) => {
-        console.log("Callback");
-        console.log(childData);
+        setSelectedTopic(childData)
     };
 
     return (
         <div className="App">
             <SearchControl parentCallback={handleCallback}/>
-            <ReviewList/>
+            <ReviewList selectedTopic={selectedTopic}/>
         </div>
     );
 }

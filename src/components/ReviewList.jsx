@@ -4,51 +4,49 @@ import data from '../cochrane_reviews.json';
 
 
 const ReviewList = ({selectedTopic}) => {
-    const [reviews, setReviews]     = useState([]);
-    const [display, setDisplay]     = useState(10);
-    const [isLoading, setIsLoading] = useState(false);
+    const [reviews, setReviews] = useState([]);          // All reviews, flattened
+    const [maxReviews, setMaxReviews] = useState(10);    // # of reviews to display
 
 
-    // Load reviews into App.
-    // They are already fetched (loaded from a local .json file),
-    // this function simply adds review(s) to the display.
-    const fetchReviews = () => {
-        setIsLoading(true);
-        setReviews(data.slice(0, display));
-        setDisplay(display + 3);
-        setIsLoading(false);
-    }
-
-
-    // If user has scrolled to the bottom of viewport, load more reviews
+    // If user has scrolled to the bottom of viewport,
+    // then load more reviews
     const handleScroll = () => {
-        if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isLoading) {
+        if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) {
             return;
         }
-        fetchReviews();
+        setMaxReviews(maxReviews + 3);
     };
 
 
+    // When
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [reviews]);
+    }, [maxReviews]);
 
 
+    // When the selected topic changes,
+    // limit the displayed reviews to only those matching the topic
     useEffect(() => {
-        data = data.flat();
-        fetchReviews();
+        setMaxReviews(10);
+    }, [selectedTopic])
+
+
+    // Initialize variables
+    useEffect(() => {
+        setReviews(data.flat());
     }, []);
 
 
     return (
         <ul className="reviews">
-            {reviews.map((review, index) => (
-                !selectedTopic || (selectedTopic === review.topic) ?
-                    (<ReviewItem key={index} index={index} review={review}/>) : null
-            ))}
-        </ul>
-    );
+            {reviews
+                .filter((el) => selectedTopic ? el.topic === selectedTopic : true)
+                .slice(0, maxReviews)
+                .map((review, index) => (
+                    <ReviewItem key={index} index={index} review={review}/>
+                ))}
+        </ul>);
 };
 
 export default ReviewList;

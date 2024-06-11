@@ -3,8 +3,8 @@ import ReviewItem from "./ReviewItem";
 import data from '../cochrane_reviews.json';
 
 
-const ReviewList = ({selectedTopic}) => {
-    const [reviews, setReviews] = useState([]);          // All reviews, flattened
+const ReviewList = ({selectedTopic, parentCallback}) => {
+    const [reviews, setReviews]       = useState([]);          // All reviews, flattened
     const [maxReviews, setMaxReviews] = useState(10);    // # of reviews to display
 
 
@@ -18,7 +18,6 @@ const ReviewList = ({selectedTopic}) => {
     };
 
 
-    // When
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -28,6 +27,7 @@ const ReviewList = ({selectedTopic}) => {
     // When the selected topic changes,
     // limit the displayed reviews to only those matching the topic
     useEffect(() => {
+        parentCallback(selectedTopic ? reviews.filter((el) => selectedTopic ? el.topic === selectedTopic : true).length : 0);
         setMaxReviews(10);
     }, [selectedTopic])
 

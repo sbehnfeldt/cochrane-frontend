@@ -3,13 +3,13 @@ import {FaSearch, FaWindowClose} from "react-icons/fa";
 import data from '../cochrane_reviews.json';
 
 
-const SearchControl = ({parentCallback}) => {
-    const [allTopics, setAllTopics] = useState([]);                         // All topics (as found in input JSON file)
-    const [filteredTopics, setFilteredTopics] = useState([]);               // Subset of all topics (those matching search input)
-    const [highlightedTopic, setHighlightedTopic] = useState('');           // "Proposed" topic from topics list
-    const [selectedTopic, setSelectedTopic] = useState(null);               // Topic when user has finally  made a choice
+const SearchControl = ({reviewCount, parentCallback}) => {
+    const [allTopics, setAllTopics]                         = useState([]);                         // All topics (as found in input JSON file)
+    const [filteredTopics, setFilteredTopics]               = useState([]);               // Subset of all topics (those matching search input)
+    const [highlightedTopic, setHighlightedTopic]           = useState('');           // "Proposed" topic from topics list
+    const [selectedTopic, setSelectedTopic]                 = useState(null);               // Topic when user has finally  made a choice
     const [highlightedTopicIndex, setHighlightedTopicIndex] = useState(0);  // Index of proposed topic in filtered topics
-    const [showTopics, setShowTopics] = useState(false);                    // Whether to show the drop-down list of options
+    const [showTopics, setShowTopics]                       = useState(false);                    // Whether to show the drop-down list of options
 
 
     // User is typing in the Search box
@@ -76,7 +76,7 @@ const SearchControl = ({parentCallback}) => {
     const deselectTopic = () => {
         setSelectedTopic('');
         setHighlightedTopic('');
-        parentCallback('');
+        parentCallback();
     }
 
 
@@ -88,22 +88,16 @@ const SearchControl = ({parentCallback}) => {
 
     return (
         <section className="search clearfix">
-            {selectedTopic && (
-                <>
-                    Topic: <button onClick={deselectTopic} className="chip">{selectedTopic} <span
-                    className="close-icon">x</span></button>
-                </>
-            )}
 
-            <div>
+            <div className="searchControl">
                 <input
                     type="text"
+                    placeholder="Topic"
                     value={highlightedTopic}
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
                 />
                 <FaSearch className="search-icon"/>
-
                 {showTopics && highlightedTopic && (
                     <ul>
                         {filteredTopics.map((suggestion, index) => (
@@ -119,6 +113,19 @@ const SearchControl = ({parentCallback}) => {
                     </ul>
                 )}
             </div>
+
+            {selectedTopic && (
+                <div className="selected-topic">
+                    Topic: <button onClick={deselectTopic} className="chip">{selectedTopic} <span
+                    className="close-icon">x</span></button>
+                </div>
+            )}
+
+            {(0 != reviewCount) && (
+                <div className="foo">
+                    <b>{reviewCount}</b> Cochrane Reviews matching <b>{selectedTopic}</b>
+                </div>
+            )}
         </section>
     );
 };

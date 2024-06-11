@@ -6,15 +6,20 @@ import './App.css';
 
 function App() {
     const [selectedTopic, setSelectedTopic] = useState('');
+    const [reviewCount, setReviewCount]     = useState(null);
 
-    const handleCallback = (childData) => {
+    const receiveSelectedTopic = (childData) => {
         setSelectedTopic(childData)
     };
 
+    const receiveReviewCount = (childData) => {
+        setReviewCount(childData);
+    }
+
     return (
         <div className="App">
-            <SearchControl parentCallback={handleCallback}/>
-            <ReviewList selectedTopic={selectedTopic}/>
+            <SearchControl reviewCount={reviewCount} parentCallback={receiveSelectedTopic}/>
+            <ReviewList selectedTopic={selectedTopic} parentCallback={receiveReviewCount}/>
         </div>
     );
 }

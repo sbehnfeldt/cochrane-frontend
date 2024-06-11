@@ -2,13 +2,14 @@ import {useState, useEffect} from 'react';
 import {FaSearch, FaWindowClose} from "react-icons/fa";
 import data from '../cochrane_reviews.json';
 
+
 const SearchControl = ({parentCallback}) => {
-    const [allTopics, setAllTopics]                         = useState([]);     // All topics (as found in input JSON file)
-    const [filteredTopics, setFilteredTopics]               = useState([]);     // Subset of all topics (those matching search input)
-    const [highlightedTopic, setHighlightedTopic]           = useState('');     //
-    const [selectedTopic, setSelectedTopic]                 = useState(null);   // Topic when user has finally  made a choice
-    const [showTopics, setShowTopics]                       = useState(false);  // Whether or not to show the drop-down list of options
-    const [highlightedTopicIndex, setHighlightedTopicIndex] = useState(0);      //
+    const [allTopics, setAllTopics] = useState([]);                         // All topics (as found in input JSON file)
+    const [filteredTopics, setFilteredTopics] = useState([]);               // Subset of all topics (those matching search input)
+    const [highlightedTopic, setHighlightedTopic] = useState('');           // "Proposed" topic from topics list
+    const [selectedTopic, setSelectedTopic] = useState(null);               // Topic when user has finally  made a choice
+    const [highlightedTopicIndex, setHighlightedTopicIndex] = useState(0);  // Index of proposed topic in filtered topics
+    const [showTopics, setShowTopics] = useState(false);                    // Whether to show the drop-down list of options
 
 
     // User is typing in the Search box
@@ -60,7 +61,7 @@ const SearchControl = ({parentCallback}) => {
     };
 
 
-    // User clicks on a topic in the suggestion list
+    // User mouse-clicks on a topic in the topics list
     const handleClick = (topic) => {
         setSelectedTopic(topic);
         setHighlightedTopic(topic);
@@ -71,6 +72,15 @@ const SearchControl = ({parentCallback}) => {
     };
 
 
+    // Use clicks the Topic chip
+    const deselectTopic = () => {
+        setSelectedTopic('');
+        setHighlightedTopic('');
+        parentCallback('');
+    }
+
+
+    // Initialization:
     useEffect(() => {
         setAllTopics([...new Set(data.flat().map(item => item.topic))]);
     }, []);
@@ -80,7 +90,8 @@ const SearchControl = ({parentCallback}) => {
         <section className="search clearfix">
             {selectedTopic && (
                 <>
-                    Topic: <button className="chip">{selectedTopic} <FaWindowClose/></button>
+                    Topic: <button onClick={deselectTopic} className="chip">{selectedTopic} <span
+                    className="close-icon">x</span></button>
                 </>
             )}
 

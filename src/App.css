@@ -62,6 +62,20 @@ section.search span.selectedTopic {
     cursor: pointer;
 }
 
+.chip .close-icon {
+    border-radius: 10rem;
+    margin: 0;
+    padding: 3px;
+    background-color: var(--color);
+    color: #fff;
+    font-weight: bold;
+}
+
+.chip .close-icon:hover {
+    color: var(--color);
+    background-color: #fff;
+}
+
 section.search div {
     float: right;
     width: 35%;

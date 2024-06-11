@@ -96,6 +96,7 @@ section.search ul {
     color: white;
 }
 
+section.search ul li.highlighted,
 section.search ul li:hover {
     background-color: mintcream;
     color: #09265d;
